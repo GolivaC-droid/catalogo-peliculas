@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Películas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #141414;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #e50914;
+        }
+
+        .contenedor {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background: #222;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .info {
+            padding: 15px;
+        }
+
+        .info h2 {
+            margin: 0;
+            font-size: 20px;
+            color: #09e544;
+        }
+
+        .info p {
+            font-size: 14px;
+            margin: 8px 0;
+        }
+
+        .estado {
+            font-weight: bold;
+        }
+
+        .disponible {
+            color: lightgreen;
+        }
+
+        .nodisponible {
+            color: rgb(11, 253, 84);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>☣️ Catálogo de Películas</h1>
+
+    <div class="contenedor" id="peliculas"></div>
+
+    <script>
+        const peliculas = [
+            {
+                "imdbID":"231035",
+                "Title":"Violet Evergarden Movie",
+                "Year":"2020",
+                "Type":"Drama",
+                "Poster":"https://cdn.myanimelist.net/images/anime/1825/110716.jpg",
+                "description":"Historia de Violet...",
+                "Ubication":"POPCINEMA",
+                "Estado":false
+            },
+            {
+                "imdbID":"29082025",
+                "Title":"Rápido y Furioso",
+                "Year":"2001",
+                "Type":"Acción",
+                "Poster":"https://hips.hearstapps.com/hmg-prod/images/fast-and-furious-1-1564933929.jpg",
+                "description":"Carreras ilegales y acción.",
+                "Ubication":"Guastatoya",
+                "Estado":true
+            },
+            {
+                "imdbID":"80005",
+                "Title":"Iron Man",
+                "Year":"2008",
+                "Type":"Acción",
+                "Poster":"https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT95Db6V4jzEkaZjnWEV5n0qHu1a2InkUgafj3lWQDRxQIxYvL3",
+                "description":"Tony Stark crea su armadura.",
+                "Ubication":"Chimaltenango",
+                "Estado":true
+            }
+        ];
+
+        const contenedor = document.getElementById("peliculas");
+
+        peliculas.forEach(pelicula => {
+            contenedor.innerHTML += `
+                <div class="card">
+                    <img src="${pelicula.Poster}" alt="${pelicula.Title}">
+                    <div class="info">
+                        <h2>${pelicula.Title}</h2>
+                        <p><strong>Año:</strong> ${pelicula.Year}</p>
+                        <p><strong>Género:</strong> ${pelicula.Type}</p>
+                        <p>${pelicula.description}</p>
+                        <p><strong>Ubicación:</strong> ${pelicula.Ubication}</p>
+                        <p class="estado ${pelicula.Estado ? 'disponible' : 'nodisponible'}">
+                            ${pelicula.Estado ? 'Disponible' : 'No disponible'}
+                        </p>
+                    </div>
+                </div>
+            `;
+        });
+    </script>
+
+</body>
+</html>
